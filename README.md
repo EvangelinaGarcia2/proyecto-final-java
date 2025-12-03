@@ -1,16 +1,41 @@
-🚀 DemoApplication – Proyecto Spring Boot
+Proyecto Java - API de Productos
 
-Este proyecto es una aplicación básica construida con Java y Spring Boot, pensada como punto de partida para crear APIs REST, servicios backend o aplicaciones empresariales con el ecosistema Spring.
+Este proyecto es una aplicación Java desarrollada con Spring Boot que expone una API REST para gestionar productos. Incluye operaciones CRUD (crear, leer, actualizar y eliminar productos).
 
+Tecnologías utilizadas
+
+Java 21
+
+Spring Boot 3.x
+
+Spring Web
+
+Spring Data JPA
+
+Hibernate
+
+MySQL (o base de datos configurada en application.properties)
+
+Lombok para reducir código boilerplate
 📁 Estructura del Proyecto
 src/
  └── main/
-      ├── java/
-      │    └── com/techlab/demo/
+      ├── java/com/techlab/demo/
+           ├── controller
+                 └── ProductController.java
+           ├── entity
+                 └── Product.java
+           ├── repository
+                 └── ProductRepository.java
+           ├── service
+                 └── ProductService.java
+            ├── utils
+                 └── StringUtils.java
+           └── DemoApplication.java
       │         └── DemoApplication.java
       └── resources/
-           ├── application.properties
-           └── static/ (opcional)
+           ├── application.yaml
+           └── products.sql
 
 🧩 Descripción
 
@@ -22,71 +47,27 @@ Dependencias y configuración estándar de Spring Boot (según tu pom.xml o buil
 
 Preparado para agregar controladores, servicios, repositorios y entidades.
 
-▶️ Ejecución del Proyecto
-1. Requisitos
+📦 Modelo: Product
 
-Java 17+ (o la versión definida en tu proyecto)
+Representa un producto dentro del sistema.
 
-Maven o Gradle
+Atributos:
 
-IDE recomendado: IntelliJ IDEA, Eclipse o VS Code
+Long id
 
-2. Ejecutar desde consola
-mvn spring-boot:run
+String nombre
 
+double precio
 
-o con Gradle
+String descripcion
 
-./gradlew bootRun
+String categoria
 
-3. Ejecutar desde el IDE
+🌐 Endpoints de la API
 
-Ejecuta la clase:
-
-DemoApplication.java
-
-🔧 Configuración
-
-En el archivo:
-
-src/main/resources/application.properties
-
-
-puedes configurar:
-
-Puerto del servidor
-
-Datos de conexión a base de datos
-
-Logs
-
-Configuraciones personalizadas
-
-Ejemplo:
-
-server.port=8080
-spring.application.name=demo-app
-
-📡 Endpoints
-
-Actualmente el proyecto no tiene controladores creados.
-Para agregar uno simple:
-
-@RestController
-public class HelloController {
-
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hola desde Spring Boot!";
-    }
-}
-
-🛠️ Tecnologías Utilizadas
-
-Java
-
-Spring Boot
-
-Spring Web (opcional según dependencia)
-
-Maven/Gradle
+Método	Endpoint	Descripción
+GET	/products	Lista todos los productos
+GET	/products/{id}	Obtiene un producto por su ID
+POST	/products	Crea un nuevo producto
+PUT	/products/{id}	Actualiza un producto existente
+DELETE	/products/{id}	Elimina un producto
